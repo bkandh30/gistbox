@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 func home(w http.ResponseWriter, r *http.Request) {
@@ -10,7 +12,13 @@ func home(w http.ResponseWriter, r *http.Request) {
 }
 
 func gistView(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Display a specific gist"))
+	id, err := strconv.Atoi(r.PathValue("id"))
+	if err != nil || id < 1 {
+		http.NotFound(w, r)
+		return
+	}
+	msg := fmt.Sprintf("Display a specific gist with ID %d", id)
+	w.Write([]byte(msg))
 }
 
 func gistCreate(w http.ResponseWriter, r *http.Request) {
@@ -20,9 +28,11 @@ func gistCreate(w http.ResponseWriter, r *http.Request) {
 func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/{$}", home)
-	mux.HandleFunc("/gist/view", gistView)
+	mux.HandleFunc("/gist/view/{id}", gistView)
 	mux.HandleFunc("/gist/create", gistCreate)
 	log.Println("Starting server on :4000")
-	err := http.ListenAndServe(":4000", nil)
-	log.Fatal(err)
+	err := http.ListenAndServe(":4000", mux)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
