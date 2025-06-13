@@ -8,6 +8,7 @@ import (
 )
 
 func home(w http.ResponseWriter, r *http.Request) {
+	w.Header().Add("Server", "Go")
 	w.Write([]byte("Hello from Gistbox"))
 }
 
@@ -17,8 +18,7 @@ func gistView(w http.ResponseWriter, r *http.Request) {
 		http.NotFound(w, r)
 		return
 	}
-	msg := fmt.Sprintf("Display a specific gist with ID %d", id)
-	w.Write([]byte(msg))
+	fmt.Fprintf(w, "Display a specific gist with ID %d", id)
 }
 
 func gistCreate(w http.ResponseWriter, r *http.Request) {
@@ -26,6 +26,7 @@ func gistCreate(w http.ResponseWriter, r *http.Request) {
 }
 
 func gistCreatePost(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusCreated)
 	w.Write([]byte("Save a new gist"))
 }
 
