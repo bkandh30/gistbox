@@ -25,11 +25,16 @@ func gistCreate(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Display a form to create a new gist"))
 }
 
+func gistCreatePost(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Save a new gist"))
+}
+
 func main() {
 	mux := http.NewServeMux()
-	mux.HandleFunc("/{$}", home)
-	mux.HandleFunc("/gist/view/{id}", gistView)
-	mux.HandleFunc("/gist/create", gistCreate)
+	mux.HandleFunc("GET /{$}", home)
+	mux.HandleFunc("GET /gist/view/{id}", gistView)
+	mux.HandleFunc("GET /gist/create", gistCreate)
+	mux.HandleFunc("POST /gist/create", gistCreatePost)
 	log.Println("Starting server on :4000")
 	err := http.ListenAndServe(":4000", mux)
 	if err != nil {
