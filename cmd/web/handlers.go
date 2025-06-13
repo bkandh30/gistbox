@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 	"strconv"
 )
@@ -28,17 +27,4 @@ func gistCreate(w http.ResponseWriter, r *http.Request) {
 func gistCreatePost(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusCreated)
 	w.Write([]byte("Save a new gist"))
-}
-
-func main() {
-	mux := http.NewServeMux()
-	mux.HandleFunc("GET /{$}", home)
-	mux.HandleFunc("GET /gist/view/{id}", gistView)
-	mux.HandleFunc("GET /gist/create", gistCreate)
-	mux.HandleFunc("POST /gist/create", gistCreatePost)
-	log.Println("Starting server on :4000")
-	err := http.ListenAndServe(":4000", mux)
-	if err != nil {
-		log.Fatal(err)
-	}
 }
