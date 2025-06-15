@@ -6,10 +6,14 @@ import (
 	"log/slog"
 	"net/http"
 	"os"
+
+	"gistbox.bhavya.net/internal/models"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 type application struct {
 	logger *slog.Logger
+	gists  *models.GistModel
 }
 
 func main() {
@@ -29,6 +33,7 @@ func main() {
 
 	app := &application{
 		logger: logger,
+		gists:  &models.GistModel{DB: db},
 	}
 
 	logger.Info("Starting server", "addr", *addr)
