@@ -69,7 +69,11 @@ func (app *application) gistView(w http.ResponseWriter, r *http.Request) {
 		app.serverError(w, r, err)
 	}
 
-	err = ts.ExecuteTemplate(w, "base", gist)
+	data := templateData{
+		Gist: gist,
+	}
+
+	err = ts.ExecuteTemplate(w, "base", data)
 	if err != nil {
 		app.serverError(w, r, err)
 	}
