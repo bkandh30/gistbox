@@ -57,5 +57,32 @@ func (m *GistModel) Get(id int) (Gist, error) {
 }
 
 func (m *GistModel) Latest() ([]Gist, error) {
-	return nil, nil
+	stmt := `SELECT id, title, content, created, expires FROM gists
+	WHERE expires > UTC_TIMESTAMP() ORDER BY id DESC LIMIT 10`
+
+	rows, err := m.DB.Query(stmt)
+	if err != nil {
+		return nil, err
+	}
+
+	defer rows.Close()
+
+	var gists []Gist
+
+	for rows.Next() {
+		var g Gist
+
+		err = rows.Scan(&g.ID, &g.Title, &g.Content, &g.Created, &g.Expires)
+		if err != nil {
+			return nil, err
+		}
+
+		gists = append(gists, g)
+	}
+
+	if err = rows.Err(); err != nil {
+		return nil, err
+	}
+
+	return gists, nil
 }
