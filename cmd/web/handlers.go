@@ -38,8 +38,7 @@ func (app *application) gistView(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	app.logger.Info("Attempting to fetch gist", "id", id)
-
+	gist, err := app.gists.Get(id)
 	if err != nil {
 		if errors.Is(err, models.ErrNoRecord) {
 			http.NotFound(w, r)
