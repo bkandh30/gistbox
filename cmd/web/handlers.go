@@ -38,6 +38,10 @@ func (app *application) gistView(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) gistCreate(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Display a form to create a new gist"))
+}
+
+func (app *application) gistCreatePost(w http.ResponseWriter, r *http.Request) {
 	title := "Create a new Gist"
 	content := "O snail\nClimb Mount Fuji,\nBut slowly, slowly!\n\n– Kobayashi Issa"
 	expires := 7
@@ -49,9 +53,4 @@ func (app *application) gistCreate(w http.ResponseWriter, r *http.Request) {
 	}
 
 	http.Redirect(w, r, fmt.Sprintf("/gist/view/%d", id), http.StatusSeeOther)
-}
-
-func (app *application) gistCreatePost(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(http.StatusCreated)
-	w.Write([]byte("Save a new gist"))
 }
