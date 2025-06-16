@@ -2,6 +2,7 @@ package models
 
 import (
 	"database/sql"
+	"errors"
 	"time"
 )
 
@@ -36,7 +37,23 @@ func (m *GistModel) Insert(title string, content string, expires int) (int, erro
 }
 
 func (m *GistModel) Get(id int) (Gist, error) {
-	return Gist{}, nil
+	stmt := `SELECT id, title, content, created, expires FROM gists
+	WHERE expires > UTC_TIMESTAMP() and id = ?`
+
+	row := m.DB.QueryRow(stmt, id)
+
+	var g Gist
+
+	err := row.Scan(&g.ID, &g.Title, &g.Content, &g.Created, &g.Expires)
+	if err != nil {
+		if errors.Is(err, sql.ErrNoRows) {
+			return Gist{}, ErrNoRecord
+		} else {
+			return Gist{}, err
+		}
+	}
+
+	return g, nil
 }
 
 func (m *GistModel) Latest() ([]Gist, error) {
