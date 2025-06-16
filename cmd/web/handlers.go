@@ -3,8 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
-
-	// "html/template"
+	"html/template"
 	"net/http"
 	"strconv"
 
@@ -59,7 +58,21 @@ func (app *application) gistView(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Fprintf(w, "%+v", gist)
+	files := []string{
+		"./ui/html/base.tmpl",
+		"./ui/html/partials/nav.tmpl",
+		"./ui/html/pages/view.tmpl",
+	}
+
+	ts, err := template.ParseFiles(files...)
+	if err != nil {
+		app.serverError(w, r, err)
+	}
+
+	err = ts.ExecuteTemplate(w, "base", gist)
+	if err != nil {
+		app.serverError(w, r, err)
+	}
 }
 
 func (app *application) gistCreate(w http.ResponseWriter, r *http.Request) {
