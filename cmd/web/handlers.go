@@ -57,10 +57,10 @@ func (app *application) gistCreate(w http.ResponseWriter, r *http.Request) {
 }
 
 type gistCreateForm struct {
-	Title   string
-	Content string
-	Expires int
-	validator.Validator
+	Title               string `form:"title"`
+	Content             string `form:"content"`
+	Expires             int    `form:"expires"`
+	validator.Validator `form:"-"`
 }
 
 func (app *application) gistCreatePost(w http.ResponseWriter, r *http.Request) {
@@ -70,16 +70,12 @@ func (app *application) gistCreatePost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	expires, err := strconv.Atoi(r.PostForm.Get("expires"))
+	var form gistCreateForm
+
+	err = app.formDecoder.Decode(&form, r.PostForm)
 	if err != nil {
 		app.clientError(w, r, http.StatusBadRequest)
 		return
-	}
-
-	form := gistCreateForm{
-		Title:   r.PostForm.Get("title"),
-		Content: r.PostForm.Get("content"),
-		Expires: expires,
 	}
 
 	form.CheckField(validator.NotBlank(form.Title), "title", "This field cannot be blank")
