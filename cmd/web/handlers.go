@@ -50,6 +50,10 @@ func (app *application) gistView(w http.ResponseWriter, r *http.Request) {
 func (app *application) gistCreate(w http.ResponseWriter, r *http.Request) {
 	data := app.newTemplateData(r)
 
+	data.Form = gistCreateForm{
+		Expires: 365,
+	}
+
 	app.render(w, r, http.StatusOK, "create.tmpl", data)
 }
 
