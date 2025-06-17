@@ -64,15 +64,9 @@ type gistCreateForm struct {
 }
 
 func (app *application) gistCreatePost(w http.ResponseWriter, r *http.Request) {
-	err := r.ParseForm()
-	if err != nil {
-		app.clientError(w, r, http.StatusBadRequest)
-		return
-	}
-
 	var form gistCreateForm
 
-	err = app.formDecoder.Decode(&form, r.PostForm)
+	err := app.decodePostForm(r, &form)
 	if err != nil {
 		app.clientError(w, r, http.StatusBadRequest)
 		return
