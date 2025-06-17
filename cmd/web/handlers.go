@@ -46,7 +46,9 @@ func (app *application) gistView(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) gistCreate(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Display a form to create a new gist"))
+	data := app.newTemplateData(r)
+
+	app.render(w, r, http.StatusOK, "create.tmpl", data)
 }
 
 func (app *application) gistCreatePost(w http.ResponseWriter, r *http.Request) {
