@@ -12,6 +12,7 @@ type templateData struct {
 	CurrentYear int
 	Gist        models.Gist
 	Gists       []models.Gist
+	Form        any
 }
 
 func humanDate(t time.Time) string {
