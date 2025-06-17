@@ -117,7 +117,7 @@ To get a local copy up and running, follow these simple steps.
 
     - Create a MySQL database for the project.
     - Configure your database connection string as described in the [Configuration](#configuration) section.
-    - Run the database migrations provided in the book to set up the necessary tables.
+    <!-- - Run the database migrations provided in the book to set up the necessary tables. -->
 
 4.  **Run the application:**
     ```sh
