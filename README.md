@@ -32,7 +32,7 @@ Key features and concepts covered include:
 
 ## Project Structure
 
-The project follows the structure recommended in the "Let's Go" book:
+The project follows the structure below:
 
 ```
 .
