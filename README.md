@@ -16,7 +16,7 @@ A `Go` web application which is used to store code snippets similar to GitHub Gi
 
 ## About the Project
 
-"Gistbox" is a simple web application that allows users to create, view, and share text-based snippets. The primary goal of this project is to learn and apply best practices for building **clean, secure, and idiomatic web applications in Go**.
+"Gistbox" is a simple web application that allows users to create, view, and share text-based gists. The primary goal of this project is to learn and apply best practices for building **clean, secure, and idiomatic web applications in Go**.
 
 Key features and concepts covered include:
 
