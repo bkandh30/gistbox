@@ -5,6 +5,7 @@ A `Go` web application which is used to store code snippets similar to GitHub Gi
 ## Table of Contents
 
 - [About the Project](#about-the-project)
+- [Application Routes](#application-routes)
 - [Project Structure](#project-structure)
 - [Configuration](#configuration)
 - [Getting Started](#getting-started)
@@ -29,6 +30,22 @@ Key features and concepts covered include:
 - **Comprehensive Testing:** Writing unit and integration tests for handlers and other application components.
 - **Session Management:** Managing user sessions and authentication.
 - **HTML Templating:** Rendering dynamic HTML templates.
+
+## Application Routes
+
+The application provides the following endpoints:
+
+| HTTP Method | URI Path         | Description                                       | Authentication |
+| ----------- | ---------------- | ------------------------------------------------- | -------------- |
+| `GET`       | `/`              | Display the home page with a list of recent gists | No             |
+| `GET`       | `/gist/view/:id` | Display a specific gist                           | No             |
+| `GET`       | `/gist/create`   | Display the form for creating a new gist          | Yes            |
+| `POST`      | `/gist/create`   | Create a new gist                                 | Yes            |
+| `GET`       | `/user/signup`   | Display the user signup form                      | No             |
+| `POST`      | `/user/signup`   | Create a new user account                         | No             |
+| `GET`       | `/user/login`    | Display the user login form                       | No             |
+| `POST`      | `/user/login`    | Authenticate and log in a user                    | No             |
+| `POST`      | `/user/logout`   | Log a user out                                    | Yes            |
 
 ## Project Structure
 
