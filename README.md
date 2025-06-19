@@ -11,6 +11,7 @@ A `Go` web application which is used to store code snippets similar to GitHub Gi
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation & Setup](#installation--setup)
+- [Setting up HTTPS for Local Development](#setting-up-https-for-local-development)
 - [Testing](#testing)
 - [License](#license)
 
@@ -141,6 +142,27 @@ To get a local copy up and running, follow these simple steps.
     go run ./cmd/web
     ```
     The application will be accessible at `http://localhost:4000`.
+
+## Setting up HTTPS for Local Development
+
+To run the web server over HTTPS locally, you'll need to generate a self-signed TLS certificate.
+
+1.  **Ensure you have a `tls` directory:** The project is structured to look for the certificate and key in a `/tls` directory at the root of the project. If it doesn't exist, create it:
+
+    ```sh
+    mkdir tls
+    cd tls
+    ```
+
+2.  **Generate the certificate and private key:** Using the command-line, generate `cert.pem` and `key.pem` file inside the `tls` directory.
+
+    ```sh
+    go run /usr/local/go/src/crypto/tls/generate_cert.go --rsa-bits=2048 --host=localhost
+    ```
+
+3.  **Run the application:** The application is configured to automatically look for `tls/cert.pem` and `tls/key.pem`. If found, it will serve traffic over HTTPS on the configured address.
+
+    **Note:** Since the certificate is self-signed and not issued by a Trusted Certificate Authority, the browser will show a security warning. This is expected. You can safely proceed past the warning for local development purposes.
 
 ## Testing
 
