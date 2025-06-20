@@ -47,6 +47,7 @@ The application provides the following endpoints:
 | `GET`       | `/user/login`    | Display the user login form                       | No             |
 | `POST`      | `/user/login`    | Authenticate and log in a user                    | No             |
 | `POST`      | `/user/logout`   | Log a user out                                    | Yes            |
+| `GET`       | `/static/`       | Serve a specific static file                      | No             |
 
 ## Project Structure
 
