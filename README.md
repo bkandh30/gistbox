@@ -164,6 +164,8 @@ To run the web server over HTTPS locally, you'll need to generate a self-signed 
 
     **Note:** Since the certificate is self-signed and not issued by a Trusted Certificate Authority, the browser will show a security warning. This is expected. You can safely proceed past the warning for local development purposes.
 
+After creating the certificates, you are going to get "Warning: Potential Security Risk Ahead" screen. Click on "Advanced" and then click on "Accept the Risk and Continue" on Firefox based browsers or "Proceed to localhost (unsafe)" on Chromium based browsers.
+
 ## Testing
 
 To run the full suite of unit and integration tests, use the following command from the root of the project:
