@@ -14,7 +14,7 @@ A `Go` web application which is used to store code snippets similar to GitHub Gi
 - [Setting up HTTPS for Local Development](#setting-up-https-for-local-development)
 - [Building a Standalone Binary](#building-a-standalone-binary)
 - [Testing](#testing)
-- [License](#license)
+- [LICENSE](#LICENSE)
 
 ## About the Project
 
@@ -196,14 +196,87 @@ To run the full suite of unit and integration tests, use the following command f
 
 ```sh
 go test ./...
+
+ok      gistbox.bhavya.net/cmd/web      (cached)
+?       gistbox.bhavya.net/internal/assert      [no test files]
+?       gistbox.bhavya.net/internal/models      [no test files]
+?       gistbox.bhavya.net/internal/validator   [no test files]
+?       gistbox.bhavya.net/ui   [no test files]
+```
+
+To clear the cached results for all the tests, use the following command:
+
+```sh
+go clean -testcache
 ```
 
 To run the tests in verbose mode and see the results for each individual test, use the `-v` flag:
 
 ```sh
 go test -v ./...
+
+=== RUN   TestPing
+--- PASS: TestPing (0.01s)
+=== RUN   TestCommonHeaders
+--- PASS: TestCommonHeaders (0.00s)
+=== RUN   TestHumanDate
+=== RUN   TestHumanDate/UTC
+=== RUN   TestHumanDate/Empty
+=== RUN   TestHumanDate/CET
+--- PASS: TestHumanDate (0.00s)
+    --- PASS: TestHumanDate/UTC (0.00s)
+    --- PASS: TestHumanDate/Empty (0.00s)
+    --- PASS: TestHumanDate/CET (0.00s)
+PASS
+ok      gistbox.bhavya.net/cmd/web      0.283s
+?       gistbox.bhavya.net/internal/assert      [no test files]
+?       gistbox.bhavya.net/internal/models      [no test files]
+?       gistbox.bhavya.net/internal/validator   [no test files]
+?       gistbox.bhavya.net/ui   [no test files]
 ```
 
-## License
+To run specific tests and see the results for only that test, use the following command from the root of the project:
+
+```sh
+go test -v -run="^TestPing$" ./cmd/web/
+
+=== RUN   TestPing
+--- PASS: TestPing (0.01s)
+PASS
+ok      gistbox.bhavya.net/cmd/web      0.283s
+```
+
+To limit the tests to some specific sub-tests, use the following command:
+
+```sh
+go test -v -run="^TestHumanDate$/^UTC$" ./cmd/web
+
+=== RUN   TestHumanDate
+=== RUN   TestHumanDate/UTC
+--- PASS: TestHumanDate (0.00s)
+    --- PASS: TestHumanDate/UTC (0.00s)
+PASS
+ok      gistbox.bhavya.net/cmd/web      (cached)
+```
+
+To terminate the tests immediately after the first failure, use the `-failfast` flag:
+
+```sh
+go test -failfast ./cmd/web
+```
+
+To override the maximum number of tests that will be run simultaneously, use the `-parallel` flag:
+
+```sh
+go test -parallel=4 ./...
+```
+
+To test for race conditions in the application, use the `-race` flag:
+
+```sh
+go test -race ./cmd/web/
+```
+
+## LICENSE
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
