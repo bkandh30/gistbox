@@ -49,6 +49,7 @@ The application provides the following endpoints:
 | `POST`      | `/user/login`    | Authenticate and log in a user                    | No             |
 | `POST`      | `/user/logout`   | Log a user out                                    | Yes            |
 | `GET`       | `/static/`       | Serve a specific static file                      | No             |
+| `GET`       | `/ping`          | Return a 200 OK response                          | No             |
 
 ## Project Structure
 
