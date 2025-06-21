@@ -37,19 +37,19 @@ Key features and concepts covered include:
 
 The application provides the following endpoints:
 
-| HTTP Method | URI Path         | Description                                       | Authentication |
-| ----------- | ---------------- | ------------------------------------------------- | -------------- |
-| `GET`       | `/`              | Display the home page with a list of recent gists | No             |
-| `GET`       | `/gist/view/:id` | Display a specific gist                           | No             |
-| `GET`       | `/gist/create`   | Display the form for creating a new gist          | Yes            |
-| `POST`      | `/gist/create`   | Create a new gist                                 | Yes            |
-| `GET`       | `/user/signup`   | Display the user signup form                      | No             |
-| `POST`      | `/user/signup`   | Create a new user account                         | No             |
-| `GET`       | `/user/login`    | Display the user login form                       | No             |
-| `POST`      | `/user/login`    | Authenticate and log in a user                    | No             |
-| `POST`      | `/user/logout`   | Log a user out                                    | Yes            |
-| `GET`       | `/static/`       | Serve a specific static file                      | No             |
-| `GET`       | `/ping`          | Return a 200 OK response                          | No             |
+| HTTP Method | URI Path         | Description                                       |
+| ----------- | ---------------- | ------------------------------------------------- |
+| `GET`       | `/`              | Display the home page with a list of recent gists |
+| `GET`       | `/gist/view/:id` | Display a specific gist                           |
+| `GET`       | `/gist/create`   | Display the form for creating a new gist          |
+| `POST`      | `/gist/create`   | Create a new gist                                 |
+| `GET`       | `/user/signup`   | Display the user signup form                      |
+| `POST`      | `/user/signup`   | Create a new user account                         |
+| `GET`       | `/user/login`    | Display the user login form                       |
+| `POST`      | `/user/login`    | Authenticate and log in a user                    |
+| `POST`      | `/user/logout`   | Log a user out                                    |
+| `GET`       | `/static/`       | Serve a specific static file                      |
+| `GET`       | `/ping`          | Return a 200 OK response                          |
 
 ## Project Structure
 
