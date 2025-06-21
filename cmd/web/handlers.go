@@ -10,6 +10,10 @@ import (
 	"gistbox.bhavya.net/internal/validator"
 )
 
+func ping(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("OK"))
+}
+
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
 	gists, err := app.gists.Latest()
 	if err != nil {
