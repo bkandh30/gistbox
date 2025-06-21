@@ -177,7 +177,6 @@ You can build a standalone executable binary and run it in a clean directory. Th
 go build -o /tmp/web ./cmd/web/
 
 # Copy the UI assets (HTML templates and static files) to the target directory.
-# The binary needs these to render pages correctly.
 cp -r ./ui /tmp/
 
 # Copy the TLS certificates to the target directory.
@@ -187,7 +186,6 @@ cp -r ./tls /tmp/
 cd /tmp/
 
 # Run the binary.
-# You can use flags like -addr and -dsn as needed.
 ./web
 ```
 
