@@ -12,6 +12,7 @@ A `Go` web application which is used to store code snippets similar to GitHub Gi
   - [Prerequisites](#prerequisites)
   - [Installation & Setup](#installation--setup)
 - [Setting up HTTPS for Local Development](#setting-up-https-for-local-development)
+- [Building a Standalone Binary](#building-a-standalone-binary)
 - [Testing](#testing)
 - [License](#license)
 
@@ -166,6 +167,29 @@ To run the web server over HTTPS locally, you'll need to generate a self-signed 
     **Note:** Since the certificate is self-signed and not issued by a Trusted Certificate Authority, the browser will show a security warning. This is expected. You can safely proceed past the warning for local development purposes.
 
 After creating the certificates, you are going to get "Warning: Potential Security Risk Ahead" screen. Click on "Advanced" and then click on "Accept the Risk and Continue" on Firefox based browsers or "Proceed to localhost (unsafe)" on Chromium based browsers.
+
+## Building a Standalone Binary
+
+You can build a standalone executable binary and run it in a clean directory. This is useful for deploying the application.
+
+```sh
+# Build the executable, placing it in the /tmp directory.
+go build -o /tmp/web ./cmd/web/
+
+# Copy the UI assets (HTML templates and static files) to the target directory.
+# The binary needs these to render pages correctly.
+cp -r ./ui /tmp/
+
+# Copy the TLS certificates to the target directory.
+cp -r ./tls /tmp/
+
+# Change into the target directory.
+cd /tmp/
+
+# Run the binary.
+# You can use flags like -addr and -dsn as needed.
+./web
+```
 
 ## Testing
 
