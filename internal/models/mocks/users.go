@@ -1,6 +1,8 @@
 package mocks
 
 import (
+	"time"
+
 	"gistbox.bhavya.net/internal/models"
 )
 
@@ -30,4 +32,18 @@ func (m *UserModel) Exists(id int) (bool, error) {
 	default:
 		return false, nil
 	}
+}
+
+func (m *UserModel) Get(id int) (models.User, error) {
+	if id == 1 {
+		u := models.User{
+			ID:      1,
+			Name:    "Alice",
+			Email:   "alice@example.com",
+			Created: time.Date(2025, 1, 1, 0, 0, 0, 0, time.UTC),
+		}
+		return u, nil
+	}
+
+	return models.User{}, models.ErrNoRecord
 }
