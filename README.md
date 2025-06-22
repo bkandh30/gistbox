@@ -23,12 +23,10 @@ A `Go` web application which is used to store code snippets similar to GitHub Gi
 
 Key features of this application include:
 
-- **Project Structure:** Organizing code in a clean, scalable, and maintainable way.
 - **Advanced Routing:** Implementing advanced routing patterns with the standard `net/http` library and third-party routers like `httprouter`.
 - **Custom Middleware:** Creating and using custom middleware for logging, error recovery, and rate-limiting.
 - **Form Handling and Security:** Managing form submissions, implementing robust validation, and preventing common vulnerabilities like Cross-Site Scripting (XSS) and Cross-Site Request Forgery (CSRF).
 - **Database Integration:** Interacting with a MySQL database to store and retrieve data.
-- **Real-Time Communication:** Using WebSocket examples for real-time communication.
 - **Graceful Operations:** Implementing graceful shutdown and using context for request handling.
 - **Comprehensive Testing:** Writing unit and integration tests for handlers and other application components.
 - **Session Management:** Managing user sessions and authentication.
@@ -55,8 +53,6 @@ The application provides the following endpoints:
 ## Project Structure
 
 The project follows the structure below:
-
-Got it. Here's the updated folder structure with `efs.go` moved under the `static` directory:
 
 ```
 .
@@ -214,6 +210,8 @@ cd /tmp/
 ```
 
 ## Testing
+
+Before running the tests, make sure that you have created the necessary database infrastructure and accounts in your MySQL database.
 
 To run the full suite of unit and integration tests, use the following command from the root of the project:
 
