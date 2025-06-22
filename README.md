@@ -14,14 +14,14 @@ A `Go` web application which is used to store code snippets similar to GitHub Gi
 - [Setting up HTTPS for Local Development](#setting-up-https-for-local-development)
 - [Building a Standalone Binary](#building-a-standalone-binary)
 - [Testing](#testing)
-- [Test Cover](#test-coverage)
+- [Test Coverage](#test-coverage)
 - [LICENSE](#LICENSE)
 
 ## About the Project
 
-"Gistbox" is a simple web application that allows users to create, view, and share text-based gists. The primary goal of this project is to learn and apply best practices for building **clean, secure, and idiomatic web applications in Go**.
+"Gistbox" is a simple web application that allows users to create, view, and share text-based gists.
 
-Key features and concepts covered include:
+Key features of this application include:
 
 - **Project Structure:** Organizing code in a clean, scalable, and maintainable way.
 - **Advanced Routing:** Implementing advanced routing patterns with the standard `net/http` library and third-party routers like `httprouter`.
@@ -61,15 +61,15 @@ The project follows the structure below:
 ├── cmd
 │   └── web
 │       ├── context.go
-|       ├── handlers_test.go
-|       ├── handlers.go
+│       ├── handlers_test.go
+│       ├── handlers.go
 │       ├── helpers.go
 │       ├── main.go
-|       ├── middleware_test.go
+│       ├── middleware_test.go
 │       ├── middleware.go
 │       ├── routes.go
-|       ├── templates_test.go
-|       ├── templates.go
+│       ├── templates_test.go
+│       ├── templates.go
 │       └── testutils_test.go
 ├── internal
 │   ├── assert
@@ -90,9 +90,9 @@ The project follows the structure below:
 │   ├── users.go
 │   └── validator
 │       └── validator.go
-└── tls
-|   ├── cert.pem
-|   └── key.pem
+├── tls
+│   ├── cert.pem
+│   └── key.pem
 ├── ui
 │   ├── html
 │   │   ├── pages
