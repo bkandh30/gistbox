@@ -60,23 +60,46 @@ The project follows the structure below:
 .
 ├── cmd
 │   └── web
-│       ├── handlers.go
+│       ├── context.go
+|       ├── handlers_test.go
+|       ├── handlers.go
 │       ├── helpers.go
 │       ├── main.go
+|       ├── middleware_test.go
 │       ├── middleware.go
 │       ├── routes.go
-│       └── templates.go
+|       ├── templates_test.go
+|       ├── templates.go
+│       └── testutils_test.go
 ├── internal
+│   ├── assert
+│   │   └── assert.go
 │   ├── models
-│   │   ├── errors.go
-│   │   └── gists.go
+│   │   ├── mocks
+│   │   │   ├── gists.go
+│   │   │   └── users.go
+│   │   ├── gists.go
+│   │   └── users.go
+│   ├── testdata
+│   │   ├── setup.sql
+│   │   └── teardown.sql
+│   ├── errors.go
+│   ├── gists.go
+│   ├── testutils_test.go
+│   ├── users_test.go
+│   ├── users.go
 │   └── validator
 │       └── validator.go
+└── tls
+|   ├── cert.pem
+|   └── key.pem
 ├── ui
 │   ├── html
 │   │   ├── pages
 │   │   │   ├── create.tmpl
 │   │   │   ├── home.tmpl
+│   │   │   ├── login.tmpl
+│   │   │   ├── signup.tmpl
 │   │   │   └── view.tmpl
 │   │   ├── partials
 │   │   │   └── nav.tmpl
@@ -89,6 +112,8 @@ The project follows the structure below:
 │       │   └── logo.png
 │       └── js
 │           └── main.js
+├── efs.go
+├── .gitignore
 ├── go.mod
 ├── go.sum
 ├── LICENSE
