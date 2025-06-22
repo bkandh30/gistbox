@@ -8,8 +8,8 @@ import (
 
 var mockGist = models.Gist{
 	ID:      1,
-	Title:   "Mock Gist",
-	Content: "This is a mock gist",
+	Title:   "An old silent pond",
+	Content: "An old silent pond...",
 	Created: time.Now(),
 	Expires: time.Now(),
 }
