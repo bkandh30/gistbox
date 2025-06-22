@@ -2,6 +2,8 @@
 
 A `Go` web application which is used to store code snippets similar to GitHub Gists and Pastebin.
 
+![Gistbox](image.png)
+
 ## Table of Contents
 
 - [About the Project](#about-the-project)
@@ -117,6 +119,7 @@ The project follows the structure below:
 ├── .gitignore
 ├── go.mod
 ├── go.sum
+├── image.png
 ├── LICENSE
 └── README.md
 ```
