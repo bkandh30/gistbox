@@ -14,6 +14,7 @@ A `Go` web application which is used to store code snippets similar to GitHub Gi
 - [Setting up HTTPS for Local Development](#setting-up-https-for-local-development)
 - [Building a Standalone Binary](#building-a-standalone-binary)
 - [Testing](#testing)
+- [Test Cover](#test-coverage)
 - [LICENSE](#LICENSE)
 
 ## About the Project
@@ -275,6 +276,36 @@ To test for race conditions in the application, use the `-race` flag:
 
 ```sh
 go test -race ./cmd/web/
+```
+
+## Testing Coverage
+
+To find the total test coverage of the project, use the following command:
+
+```sh
+go test -cover ./...
+```
+
+To get the detail breakdown of test coverage by method and function, use the following command:
+
+```sh
+go test -coverprofile=/tmp/profile.out ./...
+
+go tool cover -func=/tmp/profile.out
+```
+
+An alternative way to view the coverage profile is to use the `-html` flag instead of `-func`:
+
+```sh
+go tool cover -html=/tmp/profile.out
+```
+
+To find the exact number of times that each statement is executed during the tests, use the following command:
+
+```sh
+go test -covermode=count -coverprofile=/tmp/profile.out ./...
+
+go tool cover -html=/tmp/profile.out
 ```
 
 ## LICENSE
