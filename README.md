@@ -102,13 +102,6 @@ The application can be configured through command-line flags.
 - `-addr`: The network address to run the server on (e.g., `:4000`).
 - `-dsn`: The Data Source Name for the MySQL database connection.
 
-<!-- For convenience and security, you can store sensitive information like the DSN in a `.env` file in the project root. The application will read this file if it exists. -->
-
-<!-- **Example `.env` file:**
-```
-SNIPPETBOX_DB_DSN="user:password@/snippetbox?parseTime=true"
-``` -->
-
 The application gives precedence to the command-line flag if both a flag and an environment variable are set.
 
 ## Getting Started
@@ -139,7 +132,6 @@ To get a local copy up and running, follow these simple steps.
 
     - Create a MySQL database for the project.
     - Configure your database connection string as described in the [Configuration](#configuration) section.
-    <!-- - Run the database migrations provided in the book to set up the necessary tables. -->
 
 4.  **Run the application:**
     ```sh
