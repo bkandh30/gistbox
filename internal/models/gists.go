@@ -6,6 +6,12 @@ import (
 	"time"
 )
 
+type GistModelInterface interface {
+	Insert(title string, content string, expires int) (int, error)
+	Get(id int) (Gist, error)
+	Latest() ([]Gist, error)
+}
+
 type Gist struct {
 	ID      int
 	Title   string
