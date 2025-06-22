@@ -1,52 +1,25 @@
-/*
-    Responsive and Aligned CSS for Alex Edwards Website
-
-    This stylesheet incorporates:
-    - Responsive design via media queries and flexible units (rem, em, percentages).
-    - Improved typography with consistent sizing and readability.
-    - Centralized color palette using CSS custom properties.
-    - Enhanced spacing and whitespace for better visual flow.
-    - Subtle shadows and smooth transitions for depth and interactivity.
-    - Refined form element styling and error messages, with a focus on alignment.
-
-    --- CSS Custom Properties (Variables) ---
-    Centralized values for easy theme management and consistency.
-*/
 :root {
-    /* Colors */
     --primary-text-color: #34495E;
     --secondary-text-color: #6A6C6F;
-    --accent-color: #62CB31;
-    --accent-hover-color: #4EB722;
+    --accent-color: #1ABC9C;
+    --accent-hover-color: #16A085;
     --background-light: #F1F3F6;
     --background-lighter: #F7F9FA;
     --border-color: #E4E5E7;
     --error-red: #C0392B;
 
-    /* Spacing Units - Based on 9px original step */
     --spacing-xs: 0.25rem;
-    /* 4px */
     --spacing-sm: 0.5rem;
-    /* 8px */
     --spacing-md: 1rem;
-    /* 16px (approx 18px from original design, adjusted for rem base) */
     --spacing-lg: 1.5rem;
-    /* 24px */
     --spacing-xl: 2rem;
-    /* 32px */
     --spacing-xxl: 3rem;
-    /* 48px */
 
-    /* Layout */
     --max-content-width: 800px;
     --form-label-width: 80px;
-    /* New: Fixed width for form labels for alignment */
 }
 
 
-/*
-    --- General Styles ---
-*/
 * {
     box-sizing: border-box;
     margin: 0;
@@ -55,7 +28,6 @@
 
 html {
     font-size: 16px;
-    /* Base font size for mobile */
 }
 
 body {
@@ -72,9 +44,6 @@ body {
     font-weight: 400;
 }
 
-/*
-    --- Layout and Global Spacing ---
-*/
 header,
 nav,
 main,
@@ -88,45 +57,32 @@ main {
     margin-bottom: var(--spacing-xl);
     flex-grow: 1;
     overflow: auto;
-    /* Optional: If you want to center the content within 'main' that has less than max-content-width */
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* Centers items horizontally */
 }
 
-/* Ensure content within main that needs max-width is constrained */
 main> :not(form) {
-    /* Apply to direct children of main, excluding forms for specific form centering */
     max-width: var(--max-content-width);
     width: 100%;
 }
 
-/* If the form itself is meant to be centered, apply max-width to it directly or its container */
 form {
     max-width: 500px;
-    /* Constrain the form's overall width */
     width: 100%;
     padding: var(--spacing-md);
-    /* Add some padding around the form content */
     background-color: #FFF;
-    /* Give the form a background to distinguish it */
     border-radius: 4px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    /* Subtle shadow for the form box */
 }
 
 
-/*
-    --- Typography ---
-*/
 h1 a {
     font-size: 2.5rem;
     font-weight: bold;
     background-image: url("/static/img/logo.png");
     background-repeat: no-repeat;
     background-position: 0px center;
-    /* Vertically center the logo */
     background-size: 45px auto;
     height: 2.5rem;
     padding-left: 3.5rem;
@@ -144,9 +100,7 @@ h2 {
     font-size: 1.5rem;
     margin-bottom: var(--spacing-lg);
     text-align: center;
-    /* Center h2 for consistency with form */
     margin-top: var(--spacing-xl);
-    /* Add space above h2 */
 }
 
 a {
@@ -166,11 +120,7 @@ input:not([type="submit"]) {
     font-family: "Ubuntu Mono", monospace;
 }
 
-/*
-    --- Header ---
-*/
 header {
-    background-image: linear-gradient(to right, #34495e, #34495e 25%, #9b59b6 25%, #9b59b6 35%, #3498db 35%, #3498db 45%, #62cb31 45%, #62cb31 55%, #ffb606 55%, #ffb606 65%, #e67e22 65%, #e67e22 75%, #e74c3c 85%, #e74c3c 85%, #c0392b 85%, #c0392b 100%);
     background-size: 100% 6px;
     background-repeat: no-repeat;
     border-bottom: 1px solid var(--border-color);
@@ -185,9 +135,6 @@ header a {
     text-decoration: none;
 }
 
-/*
-    --- Navigation ---
-*/
 nav {
     border-bottom: 1px solid var(--border-color);
     padding-top: var(--spacing-md);
@@ -205,6 +152,7 @@ nav a {
     margin-right: 0;
     display: block;
     padding: var(--spacing-xs) 0;
+    position: relative;
 }
 
 nav form {
@@ -232,23 +180,7 @@ nav a.live:hover {
     text-decoration: none;
 }
 
-nav a.live:after {
-    content: '';
-    display: block;
-    position: relative;
-    left: calc(50% - 7px);
-    top: var(--spacing-sm);
-    width: 14px;
-    height: 14px;
-    background: var(--background-lighter);
-    border-left: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
-    transform: rotate(-45deg);
-}
 
-/*
-    --- Buttons ---
-*/
 a.button,
 input[type="submit"] {
     background-color: var(--accent-color);
@@ -290,33 +222,23 @@ button:hover {
     cursor: pointer;
 }
 
-/*
-    --- Forms ---
-    FIXED: Alignment of labels and inputs.
-    Using flexbox for horizontal alignment on larger screens.
-*/
 form div {
     margin-bottom: var(--spacing-md);
     display: flex;
-    /* Make each form row a flex container */
     flex-direction: column;
-    /* Stack label and input on mobile by default */
     align-items: flex-start;
-    /* Align items to the start of the cross axis (left) */
     gap: var(--spacing-sm);
-    /* Gap between label and input */
+    flex-wrap: wrap;
+    /* Added: Ensures items wrap within the flex container */
 }
 
 form div:last-child {
     border-top: 1px dashed var(--border-color);
     padding-top: var(--spacing-md);
     flex-direction: column;
-    /* Ensure button area remains stacked */
     align-items: center;
-    /* Center the submit button */
 }
 
-/* Ensure the submit button itself is centered */
 form div:last-child input[type="submit"] {
     margin-left: auto;
     margin-right: auto;
@@ -325,9 +247,7 @@ form div:last-child input[type="submit"] {
 
 form input[type="radio"] {
     margin-left: 0;
-    /* Reset margin from previous rule */
     margin-right: var(--spacing-xs);
-    /* Add some margin for the radio itself */
 }
 
 form input[type="text"],
@@ -335,11 +255,8 @@ form input[type="password"],
 form input[type="email"] {
     padding: 0.75rem var(--spacing-md);
     width: 100%;
-    /* Take full width of the remaining space */
     max-width: 100%;
-    /* Ensure it doesn't exceed its container's width */
     margin-left: 0;
-    /* Remove auto margins here as flex handles distribution */
     margin-right: 0;
 }
 
@@ -360,27 +277,34 @@ form input[type="email"]:focus,
 textarea:focus {
     outline: none;
     border-color: var(--accent-color);
-    box-shadow: 0 0 0 3px rgba(98, 203, 49, 0.2);
+    box-shadow: 0 0 0 3px rgba(26, 188, 156, 0.2);
 }
 
 form label {
     display: block;
-    /* Ensure label takes up its own space */
     margin-bottom: 0;
-    /* Remove bottom margin as gap handles it */
     font-weight: 500;
     text-align: right;
-    /* Align labels to the right within their flex item */
     min-width: var(--form-label-width);
-    /* Give labels a fixed minimum width */
     padding-right: var(--spacing-md);
-    /* Padding between label and input */
 }
 
 .error {
     color: var(--error-red);
     font-weight: bold;
     display: block;
+    margin-top: var(--spacing-xs);
+    text-align: left;
+    flex-basis: 100%;
+    /* Added: Ensures the error takes full width and breaks to new line */
+    background-color: rgba(255, 0, 0, 0.1);
+    /* Temporary: Added background for clear visibility */
+    padding: var(--spacing-xs);
+    /* Temporary: Added padding for clear visibility */
+    border-radius: 3px;
+    min-height: 1.5rem;
+    /* Ensure minimum height */
+    box-sizing: border-box;
 }
 
 .error+textarea,
@@ -394,14 +318,10 @@ textarea {
     width: 100%;
     height: 15rem;
     max-width: 100%;
-    /* Adjusted for flex context */
     margin-left: 0;
     margin-right: 0;
 }
 
-/*
-    --- Gist / Code Blocks ---
-*/
 .gist {
     background-color: #FFFFFF;
     border: 1px solid var(--border-color);
@@ -443,9 +363,6 @@ textarea {
     float: none;
 }
 
-/*
-    --- Flash and Error Messages ---
-*/
 div.flash,
 div.error {
     color: #FFFFFF;
@@ -465,9 +382,6 @@ div.error {
     background-color: var(--error-red);
 }
 
-/*
-    --- Tables ---
-*/
 .table-responsive {
     overflow-x: auto;
     margin-bottom: var(--spacing-md);
@@ -507,9 +421,6 @@ tr:nth-child(2n) {
     background-color: var(--background-lighter);
 }
 
-/*
-    --- Footer ---
-*/
 footer {
     border-top: 1px solid var(--border-color);
     padding-top: var(--spacing-md);
@@ -521,11 +432,6 @@ footer {
     margin-top: auto;
 }
 
-/*
-    --- Media Queries ---
-*/
-
-/* Small tablets and larger phones (e.g., landscape mode) */
 @media (min-width: 480px) {
     html {
         font-size: 17px;
@@ -540,7 +446,6 @@ footer {
     }
 }
 
-/* Larger tablets and small laptops */
 @media (min-width: 768px) {
     html {
         font-size: 18px;
@@ -550,6 +455,7 @@ footer {
         flex-direction: row;
         justify-content: space-between;
         height: 60px;
+        align-items: center;
     }
 
     nav>div {
@@ -579,33 +485,32 @@ footer {
         padding-right: calc((100% - var(--max-content-width)) / 2);
     }
 
-    /* Desktop Form Alignment */
     form div {
         flex-direction: row;
-        /* Align label and input in a row */
         align-items: center;
-        /* Vertically center them */
         justify-content: flex-start;
-        /* Align to start of the row */
+        flex-wrap: wrap;
+        /* Added: Ensures items wrap within the flex container */
     }
 
     form label {
         text-align: right;
-        /* Right align labels in desktop view */
     }
 
     form div:last-child {
-        /* For the submit button row */
         flex-direction: row;
-        /* Keep as row on desktop */
         justify-content: center;
-        /* Center the button horizontally */
         align-items: center;
     }
 
     form div:last-child input[type="submit"] {
         margin-left: 0;
-        /* Reset previous auto margin for flex centering */
         margin-right: 0;
+    }
+}
+
+@media (min-width: 992px) {
+    form {
+        max-width: 700px;
     }
 }
