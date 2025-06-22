@@ -1,125 +1,230 @@
+/*
+    Responsive and Aligned CSS for Alex Edwards Website
+
+    This stylesheet incorporates:
+    - Responsive design via media queries and flexible units (rem, em, percentages).
+    - Improved typography with consistent sizing and readability.
+    - Centralized color palette using CSS custom properties.
+    - Enhanced spacing and whitespace for better visual flow.
+    - Subtle shadows and smooth transitions for depth and interactivity.
+    - Refined form element styling and error messages, with a focus on alignment.
+
+    --- CSS Custom Properties (Variables) ---
+    Centralized values for easy theme management and consistency.
+*/
+:root {
+    /* Colors */
+    --primary-text-color: #34495E;
+    --secondary-text-color: #6A6C6F;
+    --accent-color: #62CB31;
+    --accent-hover-color: #4EB722;
+    --background-light: #F1F3F6;
+    --background-lighter: #F7F9FA;
+    --border-color: #E4E5E7;
+    --error-red: #C0392B;
+
+    /* Spacing Units - Based on 9px original step */
+    --spacing-xs: 0.25rem;
+    /* 4px */
+    --spacing-sm: 0.5rem;
+    /* 8px */
+    --spacing-md: 1rem;
+    /* 16px (approx 18px from original design, adjusted for rem base) */
+    --spacing-lg: 1.5rem;
+    /* 24px */
+    --spacing-xl: 2rem;
+    /* 32px */
+    --spacing-xxl: 3rem;
+    /* 48px */
+
+    /* Layout */
+    --max-content-width: 800px;
+    --form-label-width: 80px;
+    /* New: Fixed width for form labels for alignment */
+}
+
+
+/*
+    --- General Styles ---
+*/
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-size: 18px;
-    font-family: "Ubuntu Mono", monospace;
 }
 
-html, body {
-    height: 100%;
+html {
+    font-size: 16px;
+    /* Base font size for mobile */
 }
 
 body {
-    line-height: 1.5;
-    background-color: #F1F3F6;
-    color: #34495E;
+    height: 100%;
+    line-height: 1.6;
+    background-color: var(--background-light);
+    color: var(--primary-text-color);
     overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: "Ubuntu Mono", monospace;
+    font-size: 1rem;
+    font-weight: 400;
 }
 
-header, nav, main, footer {
-    padding: 2px calc((100% - 800px) / 2) 0;
+/*
+    --- Layout and Global Spacing ---
+*/
+header,
+nav,
+main,
+footer {
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
 }
 
 main {
-    margin-top: 54px;
-    margin-bottom: 54px;
-    min-height: calc(100vh - 345px);
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    flex-grow: 1;
     overflow: auto;
+    /* Optional: If you want to center the content within 'main' that has less than max-content-width */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centers items horizontally */
 }
 
+/* Ensure content within main that needs max-width is constrained */
+main> :not(form) {
+    /* Apply to direct children of main, excluding forms for specific form centering */
+    max-width: var(--max-content-width);
+    width: 100%;
+}
+
+/* If the form itself is meant to be centered, apply max-width to it directly or its container */
+form {
+    max-width: 500px;
+    /* Constrain the form's overall width */
+    width: 100%;
+    padding: var(--spacing-md);
+    /* Add some padding around the form content */
+    background-color: #FFF;
+    /* Give the form a background to distinguish it */
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    /* Subtle shadow for the form box */
+}
+
+
+/*
+    --- Typography ---
+*/
 h1 a {
-    font-size: 36px;
+    font-size: 2.5rem;
     font-weight: bold;
     background-image: url("/static/img/logo.png");
     background-repeat: no-repeat;
-    background-position: 0px 0px;
-    height: 36px;
-    padding-left: 50px;
-    position: relative;
+    background-position: 0px center;
+    /* Vertically center the logo */
+    background-size: 45px auto;
+    height: 2.5rem;
+    padding-left: 3.5rem;
+    display: inline-block;
+    line-height: 1;
+    color: var(--primary-text-color);
 }
 
 h1 a:hover {
     text-decoration: none;
-    color: #34495E;
+    color: var(--primary-text-color);
 }
 
 h2 {
-    font-size: 22px;
-    margin-bottom: 36px;
-    position: relative;
-    top: -9px;
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+    /* Center h2 for consistency with form */
+    margin-top: var(--spacing-xl);
+    /* Add space above h2 */
 }
 
 a {
-    color: #62CB31;
+    color: var(--accent-color);
     text-decoration: none;
+    transition: color 0.2s ease, text-decoration 0.2s ease;
 }
 
 a:hover {
-    color: #4EB722;
+    color: var(--accent-hover-color);
     text-decoration: underline;
 }
 
-textarea, input:not([type="submit"]) {
-    font-size: 18px;
+textarea,
+input:not([type="submit"]) {
+    font-size: 1rem;
     font-family: "Ubuntu Mono", monospace;
 }
 
+/*
+    --- Header ---
+*/
 header {
-    background-image: -webkit-linear-gradient(left, #34495e, #34495e 25%, #9b59b6 25%, #9b59b6 35%, #3498db 35%, #3498db 45%, #62cb31 45%, #62cb31 55%, #ffb606 55%, #ffb606 65%, #e67e22 65%, #e67e22 75%, #e74c3c 85%, #e74c3c 85%, #c0392b 85%, #c0392b 100%);
-    background-image: -moz-linear-gradient(left, #34495e, #34495e 25%, #9b59b6 25%, #9b59b6 35%, #3498db 35%, #3498db 45%, #62cb31 45%, #62cb31 55%, #ffb606 55%, #ffb606 65%, #e67e22 65%, #e67e22 75%, #e74c3c 85%, #e74c3c 85%, #c0392b 85%, #c0392b 100%);
-    background-image: -ms-linear-gradient(left, #34495e, #34495e 25%, #9b59b6 25%, #9b59b6 35%, #3498db 35%, #3498db 45%, #62cb31 45%, #62cb31 55%, #ffb606 55%, #ffb606 65%, #e67e22 65%, #e67e22 75%, #e74c3c 85%, #e74c3c 85%, #c0392b 85%, #c0392b 100%);
     background-image: linear-gradient(to right, #34495e, #34495e 25%, #9b59b6 25%, #9b59b6 35%, #3498db 35%, #3498db 45%, #62cb31 45%, #62cb31 55%, #ffb606 55%, #ffb606 65%, #e67e22 65%, #e67e22 75%, #e74c3c 85%, #e74c3c 85%, #c0392b 85%, #c0392b 100%);
     background-size: 100% 6px;
     background-repeat: no-repeat;
-    border-bottom: 1px solid #E4E5E7;
+    border-bottom: 1px solid var(--border-color);
     overflow: auto;
-    padding-top: 33px;
-    padding-bottom: 27px;
+    padding-top: var(--spacing-xxl);
+    padding-bottom: var(--spacing-lg);
     text-align: center;
 }
 
 header a {
-    color: #34495E;
+    color: var(--primary-text-color);
     text-decoration: none;
 }
 
+/*
+    --- Navigation ---
+*/
 nav {
-    border-bottom: 1px solid #E4E5E7;
-    padding-top: 17px;
-    padding-bottom: 15px;
-    background: #F7F9FA;
-    height: 60px;
-    color: #6A6C6F;
+    border-bottom: 1px solid var(--border-color);
+    padding-top: var(--spacing-md);
+    padding-bottom: var(--spacing-md);
+    background: var(--background-lighter);
+    height: auto;
+    color: var(--secondary-text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
 }
 
 nav a {
-    margin-right: 1.5em;
-    display: inline-block;
+    margin-right: 0;
+    display: block;
+    padding: var(--spacing-xs) 0;
 }
 
 nav form {
-    display: inline-block;
-    margin-left: 1.5em;
+    display: block;
+    margin-left: 0;
 }
 
-nav div {
-    width: 50%;
-    float: left;
-}
-
-nav div:last-child {
-    text-align: right;
+nav>div {
+    width: 100%;
+    float: none;
+    text-align: center;
 }
 
 nav div:last-child a {
-    margin-left: 1.5em;
+    margin-left: 0;
     margin-right: 0;
 }
 
 nav a.live {
-    color: #34495E;
+    color: var(--primary-text-color);
     cursor: default;
 }
 
@@ -132,182 +237,375 @@ nav a.live:after {
     display: block;
     position: relative;
     left: calc(50% - 7px);
-    top: 9px;
+    top: var(--spacing-sm);
     width: 14px;
     height: 14px;
-    background: #F7F9FA;
-    border-left: 1px solid #E4E5E7;
-    border-bottom: 1px solid #E4E5E7;
-    -moz-transform: rotate(45deg);
-    -webkit-transform: rotate(-45deg);
+    background: var(--background-lighter);
+    border-left: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    transform: rotate(-45deg);
 }
 
-a.button, input[type="submit"] {
-    background-color: #62CB31;
-    border-radius: 3px;
+/*
+    --- Buttons ---
+*/
+a.button,
+input[type="submit"] {
+    background-color: var(--accent-color);
+    border-radius: 4px;
     color: #FFFFFF;
-    padding: 18px 27px;
+    padding: var(--spacing-md) var(--spacing-lg);
     border: none;
     display: inline-block;
-    margin-top: 18px;
+    margin-top: var(--spacing-lg);
     font-weight: 700;
+    font-size: 1rem;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-a.button:hover, input[type="submit"]:hover {
-    background-color: #4EB722;
+a.button:hover,
+input[type="submit"]:hover {
+    background-color: var(--accent-hover-color);
     color: #FFFFFF;
     cursor: pointer;
     text-decoration: none;
-}
-
-form div {
-    margin-bottom: 18px;
-}
-
-form div:last-child {
-    border-top: 1px dashed #E4E5E7;
-}
-
-form input[type="radio"] {
-    margin-left: 18px;
-}
-
-form input[type="text"], form input[type="password"], form input[type="email"] {
-    padding: 0.75em 18px;
-    width: 100%;
-}
-
-form input[type=text], form input[type="password"], form input[type="email"], textarea {
-    color: #6A6C6F;
-    background: #FFFFFF;
-    border: 1px solid #E4E5E7;
-    border-radius: 3px;
-}
-
-form label {
-    display: inline-block;
-    margin-bottom: 9px;
-}
-
-.error {
-    color: #C0392B;
-    font-weight: bold;
-    display: block;
-}
-
-.error + textarea, .error + input {
-    border-color: #C0392B !important;
-    border-width: 2px !important;
-}
-
-textarea {
-    padding: 18px;
-    width: 100%;
-    height: 266px;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
 button {
     background: none;
     padding: 0;
     border: none;
-    color: #62CB31;
+    color: var(--accent-color);
     text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.2s ease, text-decoration 0.2s ease;
 }
 
 button:hover {
-    color: #4EB722;
+    color: var(--accent-hover-color);
     text-decoration: underline;
     cursor: pointer;
 }
 
+/*
+    --- Forms ---
+    FIXED: Alignment of labels and inputs.
+    Using flexbox for horizontal alignment on larger screens.
+*/
+form div {
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    /* Make each form row a flex container */
+    flex-direction: column;
+    /* Stack label and input on mobile by default */
+    align-items: flex-start;
+    /* Align items to the start of the cross axis (left) */
+    gap: var(--spacing-sm);
+    /* Gap between label and input */
+}
+
+form div:last-child {
+    border-top: 1px dashed var(--border-color);
+    padding-top: var(--spacing-md);
+    flex-direction: column;
+    /* Ensure button area remains stacked */
+    align-items: center;
+    /* Center the submit button */
+}
+
+/* Ensure the submit button itself is centered */
+form div:last-child input[type="submit"] {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+form input[type="radio"] {
+    margin-left: 0;
+    /* Reset margin from previous rule */
+    margin-right: var(--spacing-xs);
+    /* Add some margin for the radio itself */
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="email"] {
+    padding: 0.75rem var(--spacing-md);
+    width: 100%;
+    /* Take full width of the remaining space */
+    max-width: 100%;
+    /* Ensure it doesn't exceed its container's width */
+    margin-left: 0;
+    /* Remove auto margins here as flex handles distribution */
+    margin-right: 0;
+}
+
+form input[type=text],
+form input[type="password"],
+form input[type="email"],
+textarea {
+    color: var(--secondary-text-color);
+    background: #FFFFFF;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+form input[type=text]:focus,
+form input[type="password"]:focus,
+form input[type="email"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(98, 203, 49, 0.2);
+}
+
+form label {
+    display: block;
+    /* Ensure label takes up its own space */
+    margin-bottom: 0;
+    /* Remove bottom margin as gap handles it */
+    font-weight: 500;
+    text-align: right;
+    /* Align labels to the right within their flex item */
+    min-width: var(--form-label-width);
+    /* Give labels a fixed minimum width */
+    padding-right: var(--spacing-md);
+    /* Padding between label and input */
+}
+
+.error {
+    color: var(--error-red);
+    font-weight: bold;
+    display: block;
+}
+
+.error+textarea,
+.error+input {
+    border-color: var(--error-red) !important;
+    border-width: 2px !important;
+}
+
+textarea {
+    padding: var(--spacing-md);
+    width: 100%;
+    height: 15rem;
+    max-width: 100%;
+    /* Adjusted for flex context */
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/*
+    --- Gist / Code Blocks ---
+*/
 .gist {
     background-color: #FFFFFF;
-    border: 1px solid #E4E5E7;
-    border-radius: 3px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
 }
 
 .gist pre {
-    padding: 18px;
-    border-top: 1px solid #E4E5E7;
-    border-bottom: 1px solid #E4E5E7;
+    padding: var(--spacing-md);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    overflow-x: auto;
+    line-height: 1.4;
 }
 
 .gist .metadata {
-    background-color: #F7F9FA;
-    color: #6A6C6F;
-    padding: 0.75em 18px;
+    background-color: var(--background-lighter);
+    color: var(--secondary-text-color);
+    padding: 0.75rem var(--spacing-md);
     overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-sm);
 }
 
 .gist .metadata span {
-    float: right;
+    float: none;
 }
 
 .gist .metadata strong {
-    color: #34495E;
+    color: var(--primary-text-color);
 }
 
 .gist .metadata time {
     display: inline-block;
+    float: none;
 }
 
-.gist .metadata time:first-child {
-    float: left;
-}
-
-.gist .metadata time:last-child {
-    float: right;
+/*
+    --- Flash and Error Messages ---
+*/
+div.flash,
+div.error {
+    color: #FFFFFF;
+    font-weight: bold;
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    text-align: center;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 div.flash {
-    color: #FFFFFF;
-    font-weight: bold;
-    background-color: #34495E;
-    padding: 18px;
-    margin-bottom: 36px;
-    text-align: center;
+    background-color: var(--primary-text-color);
 }
 
 div.error {
-    color: #FFFFFF;
-    background-color: #C0392B;
-    padding: 18px;
-    margin-bottom: 36px;
-    font-weight: bold;
-    text-align: center;
+    background-color: var(--error-red);
+}
+
+/*
+    --- Tables ---
+*/
+.table-responsive {
+    overflow-x: auto;
+    margin-bottom: var(--spacing-md);
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
 }
 
 table {
     background: white;
-    border: 1px solid #E4E5E7;
+    border: none;
     border-collapse: collapse;
     width: 100%;
+    min-width: 500px;
 }
 
-td, th {
+td,
+th {
     text-align: left;
-    padding: 9px 18px;
+    padding: var(--spacing-md) var(--spacing-md);
 }
 
-th:last-child, td:last-child {
+th:last-child,
+td:last-child {
     text-align: right;
-    color: #6A6C6F;
+    color: var(--secondary-text-color);
 }
 
 tr {
-    border-bottom: 1px solid #E4E5E7;
+    border-bottom: 1px solid var(--border-color);
+}
+
+tr:last-child {
+    border-bottom: none;
 }
 
 tr:nth-child(2n) {
-    background-color: #F7F9FA;
+    background-color: var(--background-lighter);
 }
 
+/*
+    --- Footer ---
+*/
 footer {
-    border-top: 1px solid #E4E5E7;
-    padding-top: 17px;
-    padding-bottom: 15px;
-    background: #F7F9FA;
-    height: 60px;
-    color: #6A6C6F;
+    border-top: 1px solid var(--border-color);
+    padding-top: var(--spacing-md);
+    padding-bottom: var(--spacing-md);
+    background: var(--background-lighter);
+    height: auto;
+    color: var(--secondary-text-color);
     text-align: center;
+    margin-top: auto;
+}
+
+/*
+    --- Media Queries ---
+*/
+
+/* Small tablets and larger phones (e.g., landscape mode) */
+@media (min-width: 480px) {
+    html {
+        font-size: 17px;
+    }
+
+    header,
+    nav,
+    main,
+    footer {
+        padding-left: var(--spacing-lg);
+        padding-right: var(--spacing-lg);
+    }
+}
+
+/* Larger tablets and small laptops */
+@media (min-width: 768px) {
+    html {
+        font-size: 18px;
+    }
+
+    nav {
+        flex-direction: row;
+        justify-content: space-between;
+        height: 60px;
+    }
+
+    nav>div {
+        width: auto;
+        text-align: left;
+    }
+
+    nav div:last-child {
+        text-align: right;
+    }
+
+    nav a {
+        margin-right: var(--spacing-lg);
+        display: inline-block;
+    }
+
+    nav form {
+        display: inline-block;
+        margin-left: var(--spacing-lg);
+    }
+
+    header,
+    nav,
+    main,
+    footer {
+        padding-left: calc((100% - var(--max-content-width)) / 2);
+        padding-right: calc((100% - var(--max-content-width)) / 2);
+    }
+
+    /* Desktop Form Alignment */
+    form div {
+        flex-direction: row;
+        /* Align label and input in a row */
+        align-items: center;
+        /* Vertically center them */
+        justify-content: flex-start;
+        /* Align to start of the row */
+    }
+
+    form label {
+        text-align: right;
+        /* Right align labels in desktop view */
+    }
+
+    form div:last-child {
+        /* For the submit button row */
+        flex-direction: row;
+        /* Keep as row on desktop */
+        justify-content: center;
+        /* Center the button horizontally */
+        align-items: center;
+    }
+
+    form div:last-child input[type="submit"] {
+        margin-left: 0;
+        /* Reset previous auto margin for flex centering */
+        margin-right: 0;
+    }
 }
