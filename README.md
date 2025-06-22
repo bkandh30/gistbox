@@ -56,6 +56,8 @@ The application provides the following endpoints:
 
 The project follows the structure below:
 
+Got it. Here's the updated folder structure with `efs.go` moved under the `static` directory:
+
 ```
 .
 ├── cmd
@@ -96,9 +98,12 @@ The project follows the structure below:
 ├── ui
 │   ├── html
 │   │   ├── pages
+│   │   │   ├── about.tmpl
+│   │   │   ├── account.tmpl
 │   │   │   ├── create.tmpl
 │   │   │   ├── home.tmpl
 │   │   │   ├── login.tmpl
+│   │   │   ├── password.tmpl
 │   │   │   ├── signup.tmpl
 │   │   │   └── view.tmpl
 │   │   ├── partials
@@ -110,9 +115,9 @@ The project follows the structure below:
 │       ├── img
 │       │   ├── favicon.ico
 │       │   └── logo.png
-│       └── js
-│           └── main.js
-├── efs.go
+│       ├── js
+│       │   └── main.js
+│       └── efs.go
 ├── .gitignore
 ├── go.mod
 ├── go.sum
